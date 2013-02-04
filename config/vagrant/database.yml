@@ -25,7 +25,7 @@ production:
   username: vagrant
   password:
 
-test:
+test: &test
   adapter: postgresql
   encoding: unicode
   database: t_library
@@ -33,3 +33,6 @@ test:
   host: 127.0.0.1
   username: vagrant
   password:
+
+cucumber:
+  <<: *test
