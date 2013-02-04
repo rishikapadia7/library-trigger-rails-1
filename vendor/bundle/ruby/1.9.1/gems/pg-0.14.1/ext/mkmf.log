@@ -261,7 +261,7 @@ checked program was:
 "gcc -o conftest -I/usr/local/include/ruby-1.9.1/i686-linux -I/usr/local/include/ruby-1.9.1/ruby/backward -I/usr/local/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -I/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L.  -rdynamic -Wl,-export-dynamic -L/usr/lib    -lpq  -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static -lpq  -lpthread -lrt -ldl -lcrypt -lm   -lc"
 conftest.c: In function ‘t’:
 conftest.c:5: warning: implicit declaration of function ‘PQescapeLiteral’
-/tmp/ccfXkNmp.o: In function `t':
+/tmp/ccZTsBAs.o: In function `t':
 /var/www/apps/library/vendor/bundle/ruby/1.9.1/gems/pg-0.14.1/ext/conftest.c:5: undefined reference to `PQescapeLiteral'
 collect2: ld returned 1 exit status
 checked program was:
@@ -294,7 +294,7 @@ checked program was:
 "gcc -o conftest -I/usr/local/include/ruby-1.9.1/i686-linux -I/usr/local/include/ruby-1.9.1/ruby/backward -I/usr/local/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -I/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L.  -rdynamic -Wl,-export-dynamic -L/usr/lib    -lpq  -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static -lpq  -lpthread -lrt -ldl -lcrypt -lm   -lc"
 conftest.c: In function ‘t’:
 conftest.c:5: warning: implicit declaration of function ‘PQescapeIdentifier’
-/tmp/cckqr8nC.o: In function `t':
+/tmp/ccvnrR0T.o: In function `t':
 /var/www/apps/library/vendor/bundle/ruby/1.9.1/gems/pg-0.14.1/ext/conftest.c:5: undefined reference to `PQescapeIdentifier'
 collect2: ld returned 1 exit status
 checked program was:
@@ -477,7 +477,7 @@ checked program was:
 "gcc -o conftest -I/usr/local/include/ruby-1.9.1/i686-linux -I/usr/local/include/ruby-1.9.1/ruby/backward -I/usr/local/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -I/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L.  -rdynamic -Wl,-export-dynamic -L/usr/lib    -lpq  -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static -lpq  -lpthread -lrt -ldl -lcrypt -lm   -lc"
 conftest.c: In function ‘t’:
 conftest.c:5: warning: implicit declaration of function ‘PQlibVersion’
-/tmp/ccEsWEEM.o: In function `t':
+/tmp/cc1T9ksa.o: In function `t':
 /var/www/apps/library/vendor/bundle/ruby/1.9.1/gems/pg-0.14.1/ext/conftest.c:5: undefined reference to `PQlibVersion'
 collect2: ld returned 1 exit status
 checked program was:
@@ -510,7 +510,7 @@ checked program was:
 "gcc -o conftest -I/usr/local/include/ruby-1.9.1/i686-linux -I/usr/local/include/ruby-1.9.1/ruby/backward -I/usr/local/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -I/usr/include  -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration conftest.c  -L. -L/usr/local/lib -Wl,-R/usr/local/lib -L.  -rdynamic -Wl,-export-dynamic -L/usr/lib    -lpq  -Wl,-R -Wl,/usr/local/lib -L/usr/local/lib -lruby-static -lpq  -lpthread -lrt -ldl -lcrypt -lm   -lc"
 conftest.c: In function ‘t’:
 conftest.c:5: warning: implicit declaration of function ‘PQping’
-/tmp/ccAUAu36.o: In function `t':
+/tmp/ccH2pJ5z.o: In function `t':
 /var/www/apps/library/vendor/bundle/ruby/1.9.1/gems/pg-0.14.1/ext/conftest.c:5: undefined reference to `PQping'
 collect2: ld returned 1 exit status
 checked program was:

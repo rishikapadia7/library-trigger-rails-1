@@ -28,12 +28,12 @@ uname -v = #1 SMP Tue Nov 6 21:05:14 UTC 2012
 /bin/universe          = unknown
 
 PATH: /usr/local/bin
-PATH: /usr/local/sbin
-PATH: /sbin
 PATH: /bin
-PATH: /usr/sbin
 PATH: /usr/bin
-PATH: /root/bin
+PATH: /usr/local/sbin
+PATH: /usr/sbin
+PATH: /sbin
+PATH: /home/vagrant/bin
 
 
 ## ----------- ##
