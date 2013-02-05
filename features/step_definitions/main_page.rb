@@ -2,6 +2,8 @@ When /^I visit the '(.*)' page$/ do |page_name|
   case page_name
     when 'Home'
       visit root_path
+    when 'Checkout'
+      visit checkout_path
   end
 end
 

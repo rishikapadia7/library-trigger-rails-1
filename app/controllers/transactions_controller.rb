@@ -1,6 +1,8 @@
 class TransactionsController < ApplicationController
   def checkout
     @transaction = Transaction.new
+    @patrons = Patron.all
+    @available_books = Book.where(:checked_out => false)
     @unavailable_books = Book.where(:checked_out => true)
   end
 
@@ -9,9 +11,10 @@ class TransactionsController < ApplicationController
 
   def create
     @transaction = Transaction.new(params[:transaction])
+    @transaction.checkout_date = Time.now
 
     if(@transaction.save)
-      flash[:notice] = t('links.history.transaction_done')
+      flash[:notice] = t('links.history.checked_out')
       redirect_to history_path
     end
   end

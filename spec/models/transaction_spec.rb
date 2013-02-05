@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe Transaction do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before(:each) do
+    @transaction = mock_model(:transaction)
+  end
+
+  it "should be valid with the right attributes" do
+  end
 end

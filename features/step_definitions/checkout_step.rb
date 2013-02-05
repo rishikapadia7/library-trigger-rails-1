@@ -9,16 +9,16 @@ Given /^There is a '(.*)'$/ do |something|
 end
 
 Then /^I should see a list of 'patrons'$/ do
-  page.has_select?('Patron', :options => Patron.all.collect {|p| p.first_name})
+  page.should have_select 'transaction_patron_id'
 end
 
 Then /^I should see a list of 'available books'$/ do
-  page.has_select?('Book', :options => Book.all.collect {|b| b.title})
+  page.should have_select 'transaction_book_id'
 end
 
 Then /^I should see a list of 'unavailable books'$/ do
-  page.should have_selector('p',:text => 'Books that are nice to have')
-  Book.all.each do |book|
+  page.should have_selector('p', :text => 'Books that are nice to have')
+  Book.where(:checked_out => true).each do |book|
     page.should have_content book.title
   end
 end
