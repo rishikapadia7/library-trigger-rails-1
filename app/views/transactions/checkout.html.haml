@@ -1,0 +1,13 @@
+.transaction_form
+  = form_for @transaction do |f|
+    = select(@transaction,:patron_id, Patron.all.collect{|p| [p.last_name, p.id] }, {:prompt => "Select a patron"})
+
+    = select(@transaction,:book_id, Book.all.collect{|b| [b.title, b.id] }, {:prompt => "Select a Book" })
+
+    = f.submit('Submit')
+
+%p= t('links.checkout.unavailable_books_heading')
+
+.unavailable_books
+  - @unavailable_books.each do |book|
+    %p= book.title

@@ -11,5 +11,8 @@ en:
       link_name: Patrons
     checkout:
       link_name: Checkout book
+      unavailable_books_heading: Books that are nice to have
     checkin:
       link_name: Checkin book
+    history:
+      transaction_done: Transaction created
