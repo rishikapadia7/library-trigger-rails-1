@@ -3,4 +3,7 @@ class Transaction < ActiveRecord::Base
 
   validates :book_id, :presence => true
   validates :patron_id, :presence => true
+
+  has_one :patron
+  has_one :book
 end
