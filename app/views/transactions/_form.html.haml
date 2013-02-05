@@ -1,0 +1,6 @@
+= form_for @transaction do |f|
+  = select(:transaction,:patron_id, @patrons.collect{|p| [p.last_name, p.id] }, {:prompt => "select a patron"})
+
+  = select(:transaction,:book_id, @available_books.collect{|b| [b.title, b.id] }, {:prompt => "Select a Book" })
+
+  = f.submit('Checkout')

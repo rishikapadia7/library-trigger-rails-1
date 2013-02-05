@@ -17,7 +17,7 @@ Then /^I should see a list of 'available books'$/ do
 end
 
 Then /^I should see a list of 'unavailable books'$/ do
-  page.should have_selector('p', :text => 'Books that are nice to have')
+  page.should have_selector('p', :text => 'Books that are currently checked out')
   Book.where(:checked_out => true).each do |book|
     page.should have_content book.title
   end
