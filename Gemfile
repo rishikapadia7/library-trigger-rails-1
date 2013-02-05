@@ -12,7 +12,6 @@ gem 'faker'
 
 group :development, :test do
   gem 'database_cleaner'
-  gem 'rspec', '2.10'
   gem 'rspec-rails', '2.10'
   gem 'webrat'
   gem 'factory_girl'

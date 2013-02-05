@@ -195,7 +195,6 @@ DEPENDENCIES
   pg
   rails (= 3.2.11)
   rb-inotify (~> 0.8.8)
-  rspec (= 2.10)
   rspec-rails (= 2.10)
   sass-rails (~> 3.2.3)
   therubyracer (~> 0.10.2)
