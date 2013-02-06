@@ -1,1 +1,11 @@
-= render 'unavailable_books'
+%p= t('books_checked_out')
+
+.unavailable_books
+  %p Title | Author
+  = t('all_available') if @unavailable_books.empty?
+  - @unavailable_books.each do |book|
+    %p
+      = book.title
+      |
+      = book.author
+      = link_to t('links.checkin.link_name') ,checkin_book_path(book.id)

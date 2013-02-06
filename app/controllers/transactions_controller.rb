@@ -23,6 +23,9 @@ class TransactionsController < ApplicationController
     end
   end
 
+  def checkin_book
+  end
+
   def history
   end
 
