@@ -15,6 +15,7 @@ class TransactionsController < ApplicationController
     @book = Book.find(@transaction.book_id)
 
     @book.update_attributes(:checked_out => false)
+    flash[:notice] = @book.title + ' is successfully checked in.'
     redirect_to checkin_path
   end
 
@@ -26,7 +27,7 @@ class TransactionsController < ApplicationController
       @book = Book.find(@transaction.book_id)
       @book.update_attributes(:checked_out => true)
 
-      flash[:notice] = @book.title + ' is successfuly checked out.'
+      flash[:notice] = @book.title + ' is successfully checked out.'
       redirect_to history_path
     else
       render :action => 'checkout'
