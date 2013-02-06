@@ -21,3 +21,12 @@ Feature: Being able to checkout a book
     When I visit the 'Checkout' page
     And I click on the 'Checkout' button
     Then I should see 'prohibited the'
+
+  Scenario: Show success message after valid input
+    Given There is a 'patron'
+    And There is a 'book'
+    When I visit the 'Checkout' page
+    And I fill in the checkout fields
+    And I click on the 'Checkout' button
+    Then I should see 'successfully'
+

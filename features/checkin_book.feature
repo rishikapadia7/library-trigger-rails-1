@@ -1,6 +1,2 @@
-Feature: Check in book
+Feature: Being able to check in book
 
-  Scenario: Show all the books borrowed
-    Given There is a 'book'
-    When I visit the 'Checkin' page
-    Then I should see a list of 'unavailable books'
