@@ -35,6 +35,7 @@ class TransactionsController < ApplicationController
   end
 
   def history
+    @transactions = Transaction.where('checkin_date is NOT NULL')
   end
 
   protected

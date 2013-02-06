@@ -13,5 +13,6 @@
         %li= link_to t('links.patrons.link_name'),patrons_path
         %li= link_to t('links.checkout.link_name'),checkout_path
         %li= link_to t('links.checkin.link_name'),checkin_path
+        %li= link_to t('links.history.link_name'),history_path
     %p= flash[:notice] if flash[:notice]
     = yield

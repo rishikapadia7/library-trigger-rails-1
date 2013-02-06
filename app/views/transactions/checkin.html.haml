@@ -7,8 +7,11 @@
     %p
       - book = Book.find(transaction.book_id)
       - patron = Patron.find(transaction.patron_id)
-      = patron.last_name
-      &nbsp;
       = patron.first_name
+      = patron.last_name
+      |
       = book.title
+      |
+      = transaction.checkout
+      |
       = link_to t('links.checkin.link_name') , {:controller => :transactions, :action => :checkin_book,  :transaction_id => transaction.id}
