@@ -1,4 +1,10 @@
 Library::Application.routes.draw do
+  resources :books
+
+
+  resources :patrons
+
+
   root :to => 'welcome#home'
   resources :books
   resources :patrons

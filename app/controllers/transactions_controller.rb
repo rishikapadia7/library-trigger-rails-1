@@ -23,11 +23,7 @@ class TransactionsController < ApplicationController
       flash[:notice] = @book.title + ' is successfuly checked out.'
       redirect_to history_path
     else
-      flash[:notice] = ['There is an error']
-      @transaction.errors.full_messages.each do |message|
-        flash[:notice] << message
-      end
-      redirect_to checkout_path
+      render :action => 'checkout'
     end
   end
 

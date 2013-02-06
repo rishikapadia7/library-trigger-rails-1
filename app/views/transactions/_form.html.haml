@@ -1,3 +1,10 @@
+- if @transaction.errors.any?
+  #error_explanation
+    %h2= pluralize(@transaction.errors.count, "error") + ' prohibited the checkout from happening'
+    %ul
+      - @transaction.errors.full_messages.each do |msg|
+        %li= msg
+
 = form_for @transaction do |f|
   = select(:transaction,:patron_id, @patrons.collect{|p| [p.last_name, p.id] }, {:prompt => "select a patron"})
 

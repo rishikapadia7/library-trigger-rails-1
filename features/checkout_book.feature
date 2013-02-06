@@ -20,4 +20,4 @@ Feature: Being able to checkout a book
   Scenario: Show error message after invalid input
     When I visit the 'Checkout' page
     And I click on the 'Checkout' button
-    Then I should see 'There is an error'
+    Then I should see 'prohibited the'

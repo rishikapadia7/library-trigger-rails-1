@@ -1,13 +1,15 @@
-.listing
-  %h2 Listing books
+%h1 Listing books
+
+.all-books
   %p Title Author Checked out
 
-- @books.each do |book|
-  = book.title
-  = book.author
-  = book.checked_out
-  = link_to 'show', book
-  = link_to 'edit', edit_book_path(book)
-  = link_to 'destroy', book, :method => :delete, data: { :confirm => 'are you sure?' }
+  - @books.each do |book|
+    %p
+      = book.title
+      = book.author
+      = book.checked_out
+      = link_to 'Show', book
+      = link_to 'Edit', edit_book_path(book)
+      = link_to('Destroy', book, method: :delete, data: { confirm: 'Are you sure?' })
 
 %p= link_to 'New Book', new_book_path

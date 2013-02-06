@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b First name:
+  = @patron.first_name
+%p
+  %b Last name:
+  = @patron.last_name
+
+= link_to 'Edit', edit_patron_path(@patron)
+\|
+= link_to 'Back', patrons_path
