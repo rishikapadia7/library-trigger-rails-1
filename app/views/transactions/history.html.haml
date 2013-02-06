@@ -4,6 +4,7 @@
     - patron = Patron.find(transaction.patron_id)
     - book = Book.find(transaction.book_id)
     %li
+      = link_to 'Destroy', { :controller => :transactions, :action => :delete, :transaction_id => transaction.id }
       = patron.first_name
       = patron.last_name
       |

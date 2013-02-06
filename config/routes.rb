@@ -6,6 +6,7 @@ Library::Application.routes.draw do
 
   get 'checkout' => 'transactions#checkout'
   get 'checkin' => 'transactions#checkin'
-  match 'checkin_book' => 'transactions#checkin_book'
+  get 'checkin_book' => 'transactions#checkin_book'
+  get 'delete' => 'transactions#delete'
   get 'history' => 'transactions#history'
 end

@@ -38,6 +38,12 @@ class TransactionsController < ApplicationController
     @transactions = Transaction.where('checkin_date is NOT NULL')
   end
 
+  def delete
+    Transaction.find(params[:transaction_id]).destroy
+    flash[:notice] = 'Deleted transaction'
+    redirect_to history_path
+  end
+
   protected
     def build_objects
       @patrons = Patron.all
