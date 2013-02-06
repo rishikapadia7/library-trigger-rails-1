@@ -8,4 +8,9 @@ FactoryGirl.define do
     p.first_name Faker::Name.first_name
     p.last_name Faker::Name.last_name
   end
+
+  factory :transaction do |t|
+    t.checkout_date Time.now
+    t.checkin_date Time.now
+  end
 end

@@ -8,6 +8,11 @@ Given /^There is a '(.*)'$/ do |something|
       @available_book = create(:book, :checked_out => false)
       @book = create(:book, :title => Faker::Lorem.word)
       @unavailable_book = create(:book, :title => Faker::Lorem.word, :checked_out => true)
+    when 'transaction'
+      @unfinished_transaction = create(:transaction, :patron_id => @patron.id, :book_id => @book.id, :checkin_date => nil)
+      @finished_transaction = create(:transaction ,:patron_id => @patron.id, :book_id => @book.id)
+    else
+      raise "The object is not built".inspect
   end
 end
 
@@ -37,6 +42,7 @@ Then /^I should see '(.*)'$/ do |text|
 end
 
 When /^I click on the '(.*)' link$/ do |link_name|
+  puts page.body
   click_link link_name
 end
 
@@ -47,3 +53,7 @@ Then /^I should be in the '(.*)' page$/ do |page_name|
   end
 end
 
+Then /^I should see a '(.*)' with '(.*)'$/ do |selector,text|
+  puts "BODY \n " + page.body
+  page.should have_selector(selector,:text => text)
+end

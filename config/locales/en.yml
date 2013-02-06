@@ -15,5 +15,6 @@ en:
       link_name: Checkout book
     checkin:
       link_name: Checkin book
+      checkin_book: Checkin this book
     history:
       link_name: History
