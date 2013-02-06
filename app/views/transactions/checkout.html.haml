@@ -1,9 +1,3 @@
 .transaction_form
   = render 'form'
-
-%p= t('links.checkout.unavailable_books_heading')
-
-.unavailable_books
-  = 'All books are available' if @unavailable_books.empty?
-  - @unavailable_books.each do |book|
-    %p= book.title
+= render 'unavailable_books'

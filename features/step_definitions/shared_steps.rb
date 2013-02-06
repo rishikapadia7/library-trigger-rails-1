@@ -21,6 +21,10 @@ When /^I visit the '(.*)' page$/ do |page_name|
       visit books_path
     when 'Edit book'
       visit edit_book_path(@book.id)
+    when 'Checkin'
+      visit checkin_path
+    else
+      raise "The path is not visited".inspect
   end
 end
 

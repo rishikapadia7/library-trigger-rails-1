@@ -1,9 +1,8 @@
 class TransactionsController < ApplicationController
+  before_filter :build_objects
+
   def checkout
     @transaction = Transaction.new
-    @patrons = Patron.all
-    @available_books = Book.where(:checked_out => false)
-    @unavailable_books = Book.where(:checked_out => true)
   end
 
   def checkin
@@ -12,9 +11,6 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.checkout_date = Time.now
-    @patrons = Patron.all
-    @available_books = Book.where(:checked_out => false)
-    @unavailable_books = Book.where(:checked_out => true)
 
     if(@transaction.save)
       @book = Book.find(@transaction.book_id)
@@ -29,4 +25,11 @@ class TransactionsController < ApplicationController
 
   def history
   end
+
+  protected
+    def build_objects
+      @patrons = Patron.all
+      @available_books = Book.where(:checked_out => false)
+      @unavailable_books = Book.where(:checked_out => true)
+    end
 end

@@ -2,6 +2,8 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  books_checked_out: Books that are currently checked out
+  all_available: All books are available
   links:
     home:
       link_name: Home
@@ -11,7 +13,6 @@ en:
       link_name: Patrons
     checkout:
       link_name: Checkout book
-      unavailable_books_heading: Books that are currently checked out
     checkin:
       link_name: Checkin book
     history:
