@@ -11,4 +11,4 @@
       &nbsp;
       = patron.first_name
       = book.title
-      = link_to t('links.checkin.link_name') , {:controller => :transactions, :action => :checkin_book, :book_id => transaction.book_id, :transaction_id => transaction.id}
+      = link_to t('links.checkin.link_name') , {:controller => :transactions, :action => :checkin_book,  :transaction_id => transaction.id}

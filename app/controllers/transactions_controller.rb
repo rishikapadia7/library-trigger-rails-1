@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
   def checkin_book
     @transaction = Transaction.find(params[:transaction_id])
     @transaction.update_attributes(:checkin_date => Time.now)
-    @book = Book.find(params[:book_id])
+    @book = Book.find(@transaction.book_id)
 
     @book.update_attributes(:checked_out => false)
     redirect_to checkin_path
