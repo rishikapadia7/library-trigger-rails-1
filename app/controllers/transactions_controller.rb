@@ -6,6 +6,16 @@ class TransactionsController < ApplicationController
   end
 
   def checkin
+    @unfinished_transactions = Transaction.where(:checkin_date => nil)
+  end
+
+  def checkin_book
+    @transaction = Transaction.find(params[:transaction_id])
+    @transaction.update_attributes(:checkin_date => Time.now)
+    @book = Book.find(params[:book_id])
+
+    @book.update_attributes(:checked_out => false)
+    redirect_to checkin_path
   end
 
   def create
@@ -21,9 +31,6 @@ class TransactionsController < ApplicationController
     else
       render :action => 'checkout'
     end
-  end
-
-  def checkin_book
   end
 
   def history
