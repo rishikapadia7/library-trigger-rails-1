@@ -1,8 +1,7 @@
 Feature: Being able to check in book
 
   Scenario:
-    Given There is a 'book'
-    When I visit the 'Checkin' page
+    Given There is a 'book' and I am in the 'Checkin' page
     Then I should see all checked out books
 
   Scenario:
