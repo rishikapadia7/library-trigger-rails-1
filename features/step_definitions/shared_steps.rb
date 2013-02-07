@@ -43,7 +43,6 @@ Then /^I should see '(.*)'$/ do |text|
 end
 
 When /^I click on the '(.*)' link$/ do |link_name|
-  puts page.body
   click_link link_name
 end
 
@@ -55,15 +54,6 @@ Then /^I should be in the '(.*)' page$/ do |page_name|
 end
 
 Then /^I should see a '(.*)' with '(.*)'$/ do |selector,text|
-  puts "BODY \n " + page.body
   page.should have_selector(selector,:text => text)
 end
 
-When /^I log in$/ do
-  @user = create(:user)
-  visit login_path
-
-  fill_in 'Email', :with => @user.email
-  fill_in 'Password', :with => @user.password
-  step("I click on the 'Log in' button")
-end
