@@ -61,4 +61,5 @@ require 'factory_girl'
 
 Before do
   step("Create all objects")
+  step("I log in")
 end

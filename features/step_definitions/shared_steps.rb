@@ -1,16 +1,5 @@
 World(FactoryGirl::Syntax::Methods)
-
-Given /^Create all objects$/ do
-  @patron = create(:patron)
-  @book = create(:book, :title => Faker::Lorem.word)
-  @available_book = create(:book, :checked_out => false)
-  @unavailable_book = create(:book, :title => Faker::Lorem.word, :checked_out => true)
-  @unfinished_transaction = create(:transaction, :patron_id => @patron.id, :book_id => @book.id, :checkin_date => nil)
-  @finished_transaction = create(:transaction ,:patron_id => @patron.id, :book_id => @book.id)
-end
-
 When /^I visit the '(.*)' page$/ do |page_name|
-  step('I log in')
   case page_name
     when 'Home'
       visit root_path
@@ -58,10 +47,4 @@ end
 
 Then /^I should see the '(.*)' field$/ do |field_name|
   page.should have_field field_name
-end
-
-Given /^There are:$/ do |hash_table|
-  hash_table.hashes.each do |ht|
-    step("There is a '#{ht[:object_name]}'")
-  end
 end
