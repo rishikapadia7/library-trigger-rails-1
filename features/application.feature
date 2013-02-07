@@ -1,7 +1,7 @@
-Feature: Available in every page
+Feature: Stuff that are available throughout the site
 
-  Scenario: Links in the page
-    When I visit the 'Home' page
+  Scenario Outline: Links in the page
+    When I visit the '<link>' page
     Then I should see these links:
       | link          |
       | Home          |
@@ -9,3 +9,23 @@ Feature: Available in every page
       | Patrons       |
       | Checkout book |
       | Checkin book  |
+
+    Scenarios: When i visit the Home page
+      | link      |
+      | Home      |
+
+    Scenarios: When i visit the Checkout page
+      | link      |
+      | Checkout  |
+
+    Scenarios: When i visit the Patrons  page
+      | link      |
+      | Patrons   |
+
+    Scenarios: When i visit the Books  page
+      | link      |
+      | Books     |
+
+    Scenarios: When i visit the Checkin  page
+      | link      |
+      | Checkin   |

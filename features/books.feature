@@ -16,8 +16,6 @@ Feature: Scaffolded Books
       | Title      |
       | Author     |
 
-Feature: Edit a book
-
   Scenario Outline: Go to the edit book page
     When I visit the 'Edit book' page
 

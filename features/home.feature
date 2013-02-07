@@ -1,4 +1,4 @@
-Feature: Main page
+Feature: The home page
 
   Scenario: Show welcome message
     When I visit the 'Home' page
