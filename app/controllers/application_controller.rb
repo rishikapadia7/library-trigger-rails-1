@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def check_logged_in
     unless logged_in
-      redirect_to login_path, :notice => "In order see the page you need to be logged in."
+      redirect_to login_path, :notice => "In order to see the page you need to be logged in."
     end
   end
 end

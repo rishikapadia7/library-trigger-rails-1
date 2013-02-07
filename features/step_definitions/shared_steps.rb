@@ -3,16 +3,20 @@ When /^I visit the '(.*)' page$/ do |page_name|
   case page_name
     when 'Home'
       visit root_path
-    when 'Checkout'
-      visit checkout_path
     when 'Books'
       visit books_path
-    when 'Edit book'
-      visit edit_book_path(@book.id)
+    when 'Patrons'
+      visit patrons_path
+    when 'Checkout'
+      visit checkout_path
     when 'Checkin'
       visit checkin_path
+    when 'History'
+      visit history_path
     when 'Login'
       visit login_path
+    when 'Edit book'
+      visit edit_book_path(@book.id)
     else
       raise "The path is not visited".inspect
   end
