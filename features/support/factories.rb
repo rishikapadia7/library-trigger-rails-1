@@ -13,4 +13,9 @@ FactoryGirl.define do
     t.checkout_date Time.now
     t.checkin_date Time.now
   end
+
+  factory :user do |u|
+    u.email Faker::Internet.email
+    u.password Faker::Lorem.word
+  end
 end

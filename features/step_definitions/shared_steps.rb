@@ -17,6 +17,7 @@ Given /^There is a '(.*)'$/ do |something|
 end
 
 When /^I visit the '(.*)' page$/ do |page_name|
+  step('I log in')
   case page_name
     when 'Home'
       visit root_path
@@ -56,4 +57,13 @@ end
 Then /^I should see a '(.*)' with '(.*)'$/ do |selector,text|
   puts "BODY \n " + page.body
   page.should have_selector(selector,:text => text)
+end
+
+When /^I log in$/ do
+  @user = create(:user)
+  visit login_path
+
+  fill_in 'Email', :with => @user.email
+  fill_in 'Password', :with => @user.password
+  step("I click on the 'Log in' button")
 end
