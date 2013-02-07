@@ -15,6 +15,7 @@
           %li= link_to t('links.checkout.link_name'),checkout_path
           %li= link_to t('links.checkin.link_name'),checkin_path
           %li= link_to t('links.history.link_name'),history_path
+          %li= link_to 'Log out', logout_path
     - if flash[:notice]
       %p= flash[:notice]
     = yield

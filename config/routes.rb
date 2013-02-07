@@ -11,4 +11,5 @@ Library::Application.routes.draw do
   get 'history' => 'transactions#history'
   get 'login' => 'sessions#new'
   match 'create_session' => 'sessions#create'
+  match 'logout' => 'sessions#destroy'
 end
