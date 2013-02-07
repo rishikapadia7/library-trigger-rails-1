@@ -1,19 +1,12 @@
 World(FactoryGirl::Syntax::Methods)
 
-Given /^There is a '(.*)'$/ do |something|
-  case something
-    when 'patron'
-      @patron = create(:patron)
-    when 'book'
-      @available_book = create(:book, :checked_out => false)
-      @book = create(:book, :title => Faker::Lorem.word)
-      @unavailable_book = create(:book, :title => Faker::Lorem.word, :checked_out => true)
-    when 'transaction'
-      @unfinished_transaction = create(:transaction, :patron_id => @patron.id, :book_id => @book.id, :checkin_date => nil)
-      @finished_transaction = create(:transaction ,:patron_id => @patron.id, :book_id => @book.id)
-    else
-      raise "The object is not built".inspect
-  end
+Given /^Create all objects$/ do
+  @patron = create(:patron)
+  @book = create(:book, :title => Faker::Lorem.word)
+  @available_book = create(:book, :checked_out => false)
+  @unavailable_book = create(:book, :title => Faker::Lorem.word, :checked_out => true)
+  @unfinished_transaction = create(:transaction, :patron_id => @patron.id, :book_id => @book.id, :checkin_date => nil)
+  @finished_transaction = create(:transaction ,:patron_id => @patron.id, :book_id => @book.id)
 end
 
 When /^I visit the '(.*)' page$/ do |page_name|
@@ -57,7 +50,18 @@ Then /^I should see a '(.*)' with '(.*)'$/ do |selector,text|
   page.should have_selector(selector,:text => text)
 end
 
-Given /^There is a '(.*)' and I am in the '(.*)' page$/ do |object,page_name|
-  step("There is a '#{object}'")
-  step("I visit the '#{page_name}' page")
+Then /^I should see all these fields:$/ do |field_names|
+  field_names.hashes.each do |f|
+    step("I should see the '#{f[:field_name]}' field")
+  end
+end
+
+Then /^I should see the '(.*)' field$/ do |field_name|
+  page.should have_field field_name
+end
+
+Given /^There are:$/ do |hash_table|
+  hash_table.hashes.each do |ht|
+    step("There is a '#{ht[:object_name]}'")
+  end
 end

@@ -58,3 +58,7 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 require 'factory_girl'
+
+Before do
+  step("Create all objects")
+end
