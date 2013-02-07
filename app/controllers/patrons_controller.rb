@@ -7,7 +7,7 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @patrons }
+      format.json { render json => @patrons }
     end
   end
 
@@ -18,7 +18,7 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @patron }
+      format.json { render json => @patron }
     end
   end
 
@@ -29,7 +29,7 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @patron }
+      format.json { render json => @patron }
     end
   end
 
@@ -45,11 +45,11 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       if @patron.save
-        format.html { redirect_to @patron, notice: 'Patron was successfully created.' }
-        format.json { render json: @patron, status: :created, location: @patron }
+        format.html { redirect_to @patron, notice => 'Patron was successfully created.' }
+        format.json { render json => @patron, status => :created, location => @patron }
       else
-        format.html { render action: "new" }
-        format.json { render json: @patron.errors, status: :unprocessable_entity }
+        format.html { render action => "new" }
+        format.json { render json => @patron.errors, status => :unprocessable_entity }
       end
     end
   end
@@ -61,11 +61,11 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       if @patron.update_attributes(params[:patron])
-        format.html { redirect_to @patron, notice: 'Patron was successfully updated.' }
+        format.html { redirect_to @patron, notice => 'Patron was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @patron.errors, status: :unprocessable_entity }
+        format.html { render action => "edit" }
+        format.json { render json => @patron.errors, status => :unprocessable_entity }
       end
     end
   end
