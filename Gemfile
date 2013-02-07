@@ -7,6 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'haml'
 gem 'haml-rails'
+gem 'bcrypt-ruby'
 gem 'pg'
 gem 'will_paginate'
 gem 'faker'

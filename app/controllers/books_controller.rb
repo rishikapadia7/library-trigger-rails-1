@@ -1,4 +1,5 @@
 class BooksController < ApplicationController
+  before_filter :check_logged_in
   # GET /books
   # GET /books.json
   def index

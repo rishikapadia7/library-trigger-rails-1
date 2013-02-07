@@ -1,5 +1,5 @@
 class TransactionsController < ApplicationController
-  before_filter :build_objects
+  before_filter :build_objects,:check_logged_in
 
   def checkout
     @transaction = Transaction.new
