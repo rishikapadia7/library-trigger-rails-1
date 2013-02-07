@@ -57,3 +57,7 @@ Then /^I should see a '(.*)' with '(.*)'$/ do |selector,text|
   page.should have_selector(selector,:text => text)
 end
 
+Given /^There is a '(.*)' and I am in the '(.*)' page$/ do |object,page_name|
+  step("There is a '#{object}'")
+  step("I visit the '#{page_name}' page")
+end
