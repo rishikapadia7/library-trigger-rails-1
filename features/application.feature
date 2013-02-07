@@ -9,6 +9,7 @@ Feature: Stuff that are available throughout the site
       | Patrons       |
       | Checkout book |
       | Checkin book  |
+      | Log out       |
 
     Scenarios: When i visit the Home page
       | link      |
