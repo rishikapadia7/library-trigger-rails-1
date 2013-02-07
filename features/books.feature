@@ -4,7 +4,12 @@ Feature: Scaffolded Books
     When I visit the 'Books' page
 
     Scenarios: Check if All book links are in the index page
-      Then I should see all links relevant to books
+      Then I should see these links:
+        | link     |
+        | New Book |
+        | Destroy  |
+        | Edit     |
+        | Show     |
 
     Scenarios: Check if All books are listed
       Then I should see all books

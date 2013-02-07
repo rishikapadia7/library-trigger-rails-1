@@ -64,3 +64,28 @@ Before do
   step("I log in")
   step("I should see 'Logged in!'")
 end
+
+def get_path page_name
+  case page_name
+    when 'Home'
+      return root_path
+    when 'Books'
+      return books_path
+    when 'Patrons'
+      return patrons_path
+    when 'Checkout'
+      return checkout_path
+    when 'Checkin'
+      return checkin_path
+    when 'History'
+      return history_path
+    when 'Login'
+      return login_path
+    when 'Edit book'
+      return edit_book_path(@book.id)
+    when 'Show book'
+      return show_book_path(@book.id)
+    else
+      raise "The path is not found."
+  end
+end

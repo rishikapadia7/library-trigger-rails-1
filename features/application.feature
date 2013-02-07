@@ -11,6 +11,10 @@ Feature: Stuff that are available throughout the site
       | Checkin book  |
       | Log out       |
 
+  Scenario Outline: When links are clicked
+    When I click on the '<link>' link
+    Then I should be in the '<link>' page
+
     Scenarios: When i visit the Home page
       | link      |
       | Home      |
