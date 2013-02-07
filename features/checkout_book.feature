@@ -1,8 +1,7 @@
 Feature: Being able to checkout a book
 
   Scenario Outline: Show lists
-    Given There is a '<object>'
-    When I visit the 'Checkout' page
+    Given There is a '<object>' and I am in the 'Checkout' page
     Then I should see a list of '<objects>'
 
   Scenarios: Show a list of patrons
