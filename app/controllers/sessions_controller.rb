@@ -1,5 +1,8 @@
 class SessionsController < ApplicationController
   def new
+    if logged_in
+      redirect_to root_path, :notice => 'You are already logged in!'
+    end
   end
 
   def create
