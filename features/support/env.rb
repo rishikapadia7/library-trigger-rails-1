@@ -73,9 +73,9 @@ def get_path page_name
       return books_path
     when 'Patrons'
       return patrons_path
-    when 'Checkout'
+    when 'Checkout' , 'Checkout book'
       return checkout_path
-    when 'Checkin'
+    when 'Checkin' , 'Checkin book'
       return checkin_path
     when 'History'
       return history_path
