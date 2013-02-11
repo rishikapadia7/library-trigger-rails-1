@@ -10,7 +10,7 @@ When /^I click on the '(.*)' link with the value of first book$/ do |link_name|
   find(:xpath, "//p[contains(a,#{Book.first.title})]", :text => link_name).click
 end
 
-Then /^I should see all fields with the book's values:$/ do
+Then /^I should see all fields with the book's values$/ do
   puts "works should see all fields with the book's values"
   page.should have_field('Title', :with => @book.title)
   page.should have_field('Author', :with => @book.author)
