@@ -1,21 +1,14 @@
 %h1 Listing patrons
 
-%table
-  %tr
-    %th First name
-    %th Last name
-    %th
-    %th
-    %th
+.all-patrons
+  %p First name Last name
 
   - @patrons.each do |patron|
-    %tr
-      %td= patron.first_name
-      %td= patron.last_name
-      %td= link_to 'Show', patron
-      %td= link_to 'Edit', edit_patron_path(patron)
-      %td= link_to 'Destroy', patron, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+    %p
+      = patron.first_name
+      = patron.last_name
+      = link_to 'Show', patron
+      = link_to 'Edit', edit_patron_path(patron)
+      = link_to('Destroy', patron, method: :delete, data: { confirm: 'Are you sure?' })
 
 = link_to 'New Patron', new_patron_path

@@ -9,9 +9,9 @@
       - patron = Patron.find(transaction.patron_id)
       = patron.first_name
       = patron.last_name
-      |
+      \ |
       = book.title
-      |
+      \ |
       = transaction.checkout
-      |
+      \ |
       = link_to t('links.checkin.checkin_book') , {:controller => :transactions, :action => :checkin_book,  :transaction_id => transaction.id}
