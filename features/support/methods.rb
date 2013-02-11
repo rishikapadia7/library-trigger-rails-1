@@ -16,10 +16,8 @@ end
 
 def path_of page_name
   unless page_name.include?(' ')
-    puts self.send("#{formatted page_name}_path".to_sym)
     return self.send("#{formatted page_name}_path".to_sym)
   else
-    puts get_path_of page_name
     return get_path_of page_name
   end
 end

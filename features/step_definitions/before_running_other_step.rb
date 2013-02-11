@@ -1,4 +1,5 @@
 Given /^Create all objects$/ do
+  puts "works create all objects"
   @patron = create(:patron)
   @book = create(:book)
   @available_book = create(:available_book)
@@ -12,6 +13,7 @@ Given /^Create all objects$/ do
 end
 
 Given /^I log in$/ do
+  puts "works log in"
   visit login_path
 
   fill_in 'Email', :with => @user.email
