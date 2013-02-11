@@ -9,9 +9,16 @@
 User.create(:email => 'aldrin.almacin@mosaic.com', :password => 'm')
 
 1000.times do | n |
-  Book.create(:title => Faker::Lorem.words.join(' '), :author => Faker::Name.name)
-end
+  book = Book.create(:title => Faker::Lorem.words.join(' '), :author => Faker::Name.name)
+  patron = Patron.create(:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name)
 
-1000.times do | n |
-  Patron.create(:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name)
+  if rand(2) == 0
+    checkin_date = Time.now
+    book.update_attributes(:checked_out => false)
+  else
+    checkin_date = nil
+    book.update_attributes(:checked_out => true)
+  end
+
+  Transaction.create(:patron_id => patron.id, :book_id => book.id, :checkout_date => Time.now, :checkin_date => checkin_date)
 end
