@@ -3,11 +3,12 @@ class TransactionsController < ApplicationController
 
   def checkout
     @transaction = Transaction.new
-    @unavailable_books = Book.where(:checked_out => true).paginate(:page => params[:page], :per_page => 50)
+    @unavailable_books = paginate_the Book.where_checked_out_is(true)
   end
 
   def checkin
-    @unfinished_transactions = Transaction.where(:checkin_date => nil).paginate(:page => params[:page], :per_page => 50)
+    @unfinished_transactions = paginate_the Transaction.where_checkin_date_is(nil)
+
   end
 
   def checkin_book
@@ -23,6 +24,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new(params[:transaction])
     @transaction.checkout_date = Time.now
+    @unavailable_books = paginate_the Book.where_checked_out_is false
 
     if(@transaction.save)
       @book = Book.find(@transaction.book_id)

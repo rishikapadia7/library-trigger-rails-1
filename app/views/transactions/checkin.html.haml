@@ -15,4 +15,4 @@
       = transaction.checkout
       \ |
       = link_to t('links.checkin.checkin_book') , {:controller => :transactions, :action => :checkin_book,  :transaction_id => transaction.id}
-  = will_paginate @unfinished_transactions
+  = will_paginate @unfinished_transactions if @unfinished_transactions

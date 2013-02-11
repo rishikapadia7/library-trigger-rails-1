@@ -3,7 +3,7 @@ class PatronsController < ApplicationController
   # GET /patrons
   # GET /patrons.json
   def index
-    @patrons = Patron.paginate(:page => params[:page], :per_page => 50)
+    @patrons = paginate_the Patron
 
     respond_to do |format|
       format.html # index.html.erb

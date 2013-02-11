@@ -12,6 +12,6 @@
       = link_to 'Edit', edit_book_path(book)
       = link_to('Destroy', book, method: :delete, data: { confirm: 'Are you sure?' })
 
-  = will_paginate @books
+  = will_paginate @books if @books
 
 %p= link_to 'New Book', new_book_path

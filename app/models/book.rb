@@ -5,4 +5,8 @@ class Book < ActiveRecord::Base
   validates :title, :presence => true
 
   belongs_to :transaction
+
+  def self.where_checked_out_is state
+    self.where(:checked_out => state)
+  end
 end

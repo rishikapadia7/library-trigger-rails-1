@@ -27,3 +27,5 @@ Feature: Being able to checkout a book
     And I click on the 'Checkout' button
     Then I should see 'successfully'
 
+  Scenario: Show the search box with submit
+    Then I should see the 'Search' field

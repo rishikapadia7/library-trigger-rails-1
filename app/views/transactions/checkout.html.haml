@@ -3,8 +3,14 @@
 
 %p= t('books_checked_out')
 
+.search_box
+  = form_tag checkout_path, :method => :get do
+    = label_tag :search
+    = text_field_tag :text, params[:search]
+    = submit_tag 'Search', :name => nil
+
 .unavailable_books
   = t('all_available') if @unavailable_books.empty?
   - @unavailable_books.each do |book|
     %p= book.title
-  = will_paginate @unavailable_books
+  = will_paginate @unavailable_books if @unavailable_books

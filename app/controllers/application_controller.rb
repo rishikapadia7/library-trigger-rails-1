@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_user, :logged_in, :check_logged_in
+  helper_method :current_user, :logged_in, :check_logged_in, :paginate_the
 
   private
 
@@ -21,5 +21,10 @@ class ApplicationController < ActionController::Base
     unless logged_in
       redirect_to login_path, :notice => "In order to see the page you need to be logged in."
     end
+  end
+
+  protected
+  def paginate_the array
+    array.paginate(:page => params[:page], :per_page => 50)
   end
 end
