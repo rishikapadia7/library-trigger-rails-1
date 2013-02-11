@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
   end
 
   def checkin
-    @unfinished_transactions = Transaction.where(:checkin_date => nil)
+    @unfinished_transactions = Transaction.where(:checkin_date => nil).paginate(:page => params[:page], :per_page => 50)
   end
 
   def checkin_book
