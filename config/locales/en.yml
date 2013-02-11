@@ -12,9 +12,9 @@ en:
     patrons:
       link_name: Patrons
     checkout:
-      link_name: Checkout book
+      link_name: Checkout
     checkin:
-      link_name: Checkin book
+      link_name: Checkin
       checkin_book: Checkin this book
     history:
       link_name: History

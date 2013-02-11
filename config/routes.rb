@@ -4,6 +4,7 @@ Library::Application.routes.draw do
   resources :patrons
   resources :transactions
 
+  get 'home' => 'welcome#home'
   get 'checkout' => 'transactions#checkout'
   get 'checkin' => 'transactions#checkin'
   get 'checkin_book' => 'transactions#checkin_book'

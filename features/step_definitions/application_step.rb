@@ -1,7 +1,7 @@
 World(FactoryGirl::Syntax::Methods)
 # Visit
 When /^I visit the '(.*)' page$/ do |page_name|
-  visit get_path(page_name)
+  visit path_of page_name
 end
 
 # Click Group
@@ -24,7 +24,7 @@ end
 
 # Current path check
 Then /^I should be in the '(.*)' page$/ do |page_name|
-  current_path.should eq(get_path(page_name))
+  current_path.should eq(path_of page_name)
 end
 
 # Field group

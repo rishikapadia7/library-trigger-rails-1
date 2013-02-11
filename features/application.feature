@@ -9,9 +9,9 @@ Feature: Stuff that are available throughout the site
     Then I should be in the '<link>' page
 
     Examples:
-      | link          |
-      | Home          |
-      | Books         |
-      | Patrons       |
-      | Checkout book |
-      | Checkin book  |
+      | link     |
+      | Home     |
+      | Books    |
+      | Patrons  |
+      | Checkout |
+      | Checkin  |

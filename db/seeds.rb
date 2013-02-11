@@ -7,3 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(:email => 'aldrin.almacin@mosaic.com', :password => 'm')
+
+1000.times do | n |
+  Book.create(:title => Faker::Lorem.words.join(' '), :author => Faker::Name.name)
+end
+
+1000.times do | n |
+  Patron.create(:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name)
+end
