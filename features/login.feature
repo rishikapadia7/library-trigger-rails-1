@@ -15,22 +15,10 @@ Feature: Log in checks
     And I visit the '<link>' page
     Then I should see 'In order to see the page you need to be logged in.'
 
-    Scenarios: When i visit the Home page
+    Examples:
       | link      |
       | Home      |
-
-    Scenarios: When i visit the Checkout page
-      | link      |
       | Checkout  |
-
-    Scenarios: When i visit the Patrons  page
-      | link      |
       | Patrons   |
-
-    Scenarios: When i visit the Books  page
-      | link      |
       | Books     |
-
-    Scenarios: When i visit the Checkin  page
-      | link      |
       | Checkin   |
