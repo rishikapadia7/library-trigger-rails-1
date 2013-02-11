@@ -3,6 +3,7 @@ class TransactionsController < ApplicationController
 
   def checkout
     @transaction = Transaction.new
+    @unavailable_books = Book.where(:checked_out => true).paginate(:page => params[:page], :per_page => 50)
   end
 
   def checkin

@@ -11,4 +11,6 @@
       = link_to 'Edit', edit_patron_path(patron)
       = link_to('Destroy', patron, method: :delete, data: { confirm: 'Are you sure?' })
 
+  = will_paginate @patrons
+
 = link_to 'New Patron', new_patron_path
