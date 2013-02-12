@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
   end
 
   def checkout_book
-    unless params[:books].empty? || session[:patron_selected].nil?
+    unless params[:books].nil? || session[:patron_selected].nil?
       params[:books].keys.each do |book_id|
         Transaction.create(
           :patron_id => session[:patron_selected],
@@ -39,9 +39,9 @@ class TransactionsController < ApplicationController
         )
       end
       session[:patron_selected] = nil
-      redirect_to history_path, :notice => "Books are now checked out"
+      redirect_to checkin_path, :notice => "Books are now checked out"
     else
-      redirect_to home_path, :notice => "It failed"
+      redirect_to select_book_path, :notice => "You must select a book."
     end
   end
 
