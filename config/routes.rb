@@ -2,10 +2,11 @@ Library::Application.routes.draw do
   root :to => 'welcome#home'
   resources :books
   resources :patrons
-  resources :transactions
 
   get 'home' => 'welcome#home'
   get 'checkout' => 'transactions#checkout'
+  match 'checkout_book' => 'transactions#checkout_book'
+  match 'select_book_checkout' => 'transactions#select_book_checkout'
   get 'checkin' => 'transactions#checkin'
   get 'checkin_book' => 'transactions#checkin_book'
   get 'delete' => 'transactions#delete'

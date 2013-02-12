@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-  def paginate_the array
-    array.paginate(:page => params[:page], :per_page => 50)
+  def paginate_the records,count=50
+    records.paginate(:page => params[:page], :per_page => count)
   end
 end

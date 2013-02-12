@@ -1,0 +1,16 @@
+.book_search_box
+  = form_tag select_book_checkout_path, :method => :get do
+    = label_tag :search_books
+    = text_field_tag :search_books, params[:search_books], :placeholder => 'Book title or Author'
+    = submit_tag 'Search', :name => nil
+
+.book_search_results
+  - if @books_searched
+    = form_tag checkout_book_path do
+      - @books_searched.each do |book|
+        %p
+          = check_box_tag "books[#{book.id}]"
+          = full_title_of book
+      = submit_tag 'Checkout Books'
+  - else
+    %p Search for a book

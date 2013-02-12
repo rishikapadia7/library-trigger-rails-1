@@ -1,16 +1,16 @@
-.transaction_form
-  = render 'form'
-
-%p= t('books_checked_out')
-
-.search_box
+.patron_search_box
   = form_tag checkout_path, :method => :get do
-    = label_tag :search
-    = text_field_tag :text, params[:search]
+    = label_tag :search_patron
+    = text_field_tag :search_patron, params[:search_patron], :placeholder => 'First name or last name.'
     = submit_tag 'Search', :name => nil
 
-.unavailable_books
-  = t('all_available') if @unavailable_books.empty?
-  - @unavailable_books.each do |book|
-    %p= book.title
-  = will_paginate @unavailable_books if @unavailable_books
+.patron_search_results
+  - if @patrons_searched
+    = form_tag select_book_checkout_path do
+      - @patrons_searched.each do |patron|
+        %p
+          = radio_button_tag 'patron', patron.id
+          = full_name_of patron
+      = submit_tag 'Select'
+  - else
+    %p Search for patrons

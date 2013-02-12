@@ -5,4 +5,13 @@ class Patron < ActiveRecord::Base
   validates :last_name, :presence => true
 
   belongs_to :transaction
+
+  def self.search(search)
+    if(search)
+      bind = "%#{search}%"
+      where("first_name LIKE ? OR last_name LIKE ?",bind,bind)
+    else
+      nil
+    end
+  end
 end

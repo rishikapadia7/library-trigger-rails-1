@@ -3,12 +3,19 @@ class TransactionsController < ApplicationController
 
   def checkout
     @transaction = Transaction.new
-    @unavailable_books = paginate_the Book.where_checked_out_is(true)
+    @patrons_searched = Patron.search(params[:search_patron])
+    #@available_books = Book.search(params[:text])
   end
 
   def checkin
-    @unfinished_transactions = paginate_the Transaction.where_checkin_date_is(nil)
+    @unfinished_transactions = paginate_the Transaction.where(:checkin_date => nil)
+  end
 
+  def select_book_checkout
+    if session[:patron_selected].nil?
+      session[:patron_selected] = params[:patron]
+    end
+    @books_searched = Book.search(params[:search_books])
   end
 
   def checkin_book
@@ -21,19 +28,20 @@ class TransactionsController < ApplicationController
     redirect_to checkin_path
   end
 
-  def create
-    @transaction = Transaction.new(params[:transaction])
-    @transaction.checkout_date = Time.now
-    @unavailable_books = paginate_the Book.where_checked_out_is false
-
-    if(@transaction.save)
-      @book = Book.find(@transaction.book_id)
-      @book.update_attributes(:checked_out => true)
-
-      flash[:notice] = @book.title + ' is successfully checked out.'
-      redirect_to history_path
+  def checkout_book
+    unless params[:books].empty? || session[:patron_selected].nil?
+      params[:books].keys.each do |book_id|
+        Transaction.create(
+          :patron_id => session[:patron_selected],
+          :book_id => book_id,
+          :checkout_date => Time.now,
+          :checkin_date => nil
+        )
+      end
+      session[:patron_selected] = nil
+      redirect_to history_path, :notice => "Books are now checked out"
     else
-      render :action => 'checkout'
+      redirect_to home_path, :notice => "It failed"
     end
   end
 

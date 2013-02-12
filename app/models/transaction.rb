@@ -14,8 +14,4 @@ class Transaction < ActiveRecord::Base
   def checkin
     checkin_date.to_date if checkin_date
   end
-
-  def self.where_checkin_date_is state
-    self.where(:checkin_date => state)
-  end
 end
