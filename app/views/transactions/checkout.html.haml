@@ -11,6 +11,6 @@
         %p
           = radio_button_tag 'patron', patron.id
           = full_name_of patron
-      = submit_tag 'Select'
+      = submit_tag 'Select', :disabled => true
   - else
     %p Search for patrons

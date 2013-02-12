@@ -4,7 +4,10 @@ class TransactionsController < ApplicationController
   def checkout
     @transaction = Transaction.new
     @patrons_searched = Patron.search(params[:search_patron])
-    #@available_books = Book.search(params[:text])
+    respond_to do |format|
+      format.html
+      format.js {render 'checkout.js'}
+    end
   end
 
   def checkin
