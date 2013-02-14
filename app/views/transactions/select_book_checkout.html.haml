@@ -11,6 +11,6 @@
         %p
           = check_box_tag "books[#{book.id}]"
           = full_title_of book
-      = submit_tag 'Checkout Books'
+      = submit_tag 'Checkout Books',:disabled => true
   - else
     %p Search for a book
