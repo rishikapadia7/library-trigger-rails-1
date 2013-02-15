@@ -6,35 +6,23 @@ class TransactionsController < ApplicationController
     @patrons_searched = Patron.search(params[:search_patron])
     respond_to do |format|
       format.html
-      format.js {render 'testing.js.haml', :locals => { :search_patron => params[:search_patron] } }
+      format.js {render 'testing.js.haml' }
     end
-  end
-
-  def checkin
-    @unfinished_transactions = paginate_the Transaction.where(:checkin_date => nil)
   end
 
   def select_book_checkout
+    @books_searched = Book.search(params[:search_books])
     unless params[:patron].nil? && session[:patron_selected].nil?
       session[:patron_selected] = params[:patron]
-    else
-      redirect_to checkout_path, :notice => 'Select a patron before selecting a book'
     end
-    @books_searched = Book.search(params[:search_books])
-  end
-
-  def checkin_book
-    @transaction = Transaction.find(params[:transaction_id])
-    @transaction.update_attributes(:checkin_date => Time.now)
-    @book = Book.find(@transaction.book_id)
-
-    @book.update_attributes(:checked_out => false)
-    flash[:notice] = @book.title + ' is successfully checked in.'
-    redirect_to checkin_path
+    respond_to do |format|
+      format.html
+      format.js {render 'books.js.haml'}
+    end
   end
 
   def checkout_book
-    unless params[:books].nil? || session[:patron_selected].nil?
+    unless params[:books].nil? && session[:patron_selected].nil?
       params[:books].keys.each do |book_id|
         Transaction.create(
           :patron_id => session[:patron_selected],
@@ -50,6 +38,20 @@ class TransactionsController < ApplicationController
     end
   end
 
+
+  def checkin
+    @unfinished_transactions = paginate_the Transaction.where(:checkin_date => nil)
+  end
+
+  def checkin_book
+    @transaction = Transaction.find(params[:transaction_id])
+    @transaction.update_attributes(:checkin_date => Time.now)
+    @book = Book.find(@transaction.book_id)
+
+    @book.update_attributes(:checked_out => false)
+    flash[:notice] = @book.title + ' is successfully checked in.'
+    redirect_to checkin_path
+  end
   def history
     @transactions = Transaction.where('checkin_date is NOT NULL')
   end

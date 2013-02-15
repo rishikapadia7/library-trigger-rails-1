@@ -1,4 +1,4 @@
-- unless@patrons_searched.empty?
+- unless @patrons_searched.empty?
   = form_tag select_book_checkout_path do
     - @patrons_searched.each do |patron|
       %p
