@@ -15,8 +15,10 @@ class TransactionsController < ApplicationController
   end
 
   def select_book_checkout
-    if session[:patron_selected].nil?
+    unless params[:patron].nil?
       session[:patron_selected] = params[:patron]
+    else
+      redirect_to checkout_path, :notice => 'Select a patron before selecting a book'
     end
     @books_searched = Book.search(params[:search_books])
   end

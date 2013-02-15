@@ -1,8 +1,6 @@
 $(document).ready(
   function()
   {
-    enableSubmitAfterSelect(".patron_search_results"," input:radio");
-    enableSubmitAfterSelect(".book_search_results","input:checkbox");
   }
 );
 
