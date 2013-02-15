@@ -6,7 +6,7 @@ class TransactionsController < ApplicationController
     @patrons_searched = Patron.search(params[:search_patron])
     respond_to do |format|
       format.html
-      format.js {render 'checkout.js'}
+      format.js {render 'testing.js.haml', :locals => { :search_patron => params[:search_patron] } }
     end
   end
 

@@ -1,16 +1,7 @@
 .patron_search_box
-  = form_tag checkout_path, :method => :get do
+  = form_tag checkout_path, :method => :get, :remote => true do
     = label_tag :search_patron
     = text_field_tag :search_patron, params[:search_patron], :placeholder => 'First name or last name.'
     = submit_tag 'Search', :name => nil
 
 .patron_search_results
-  - if @patrons_searched
-    = form_tag select_book_checkout_path do
-      - @patrons_searched.each do |patron|
-        %p
-          = radio_button_tag 'patron', patron.id
-          = full_name_of patron
-      = submit_tag 'Select', :disabled => true
-  - else
-    %p Search for patrons
