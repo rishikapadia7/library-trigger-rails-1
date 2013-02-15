@@ -9,7 +9,7 @@ class Book < ActiveRecord::Base
   def self.search(search)
     if(search)
       bind = "%#{search}%"
-      where("title LIKE ? OR author LIKE ?",bind,bind)
+      where("(title LIKE ? OR author LIKE ?) AND checked_out = ?",bind,bind,false)
     else
       nil
     end

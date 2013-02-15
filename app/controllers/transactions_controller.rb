@@ -12,7 +12,7 @@ class TransactionsController < ApplicationController
 
   def select_book_checkout
     @books_searched = Book.search(params[:search_books])
-    unless params[:patron].nil? && session[:patron_selected].nil?
+    if !params[:patron].nil? && session[:patron_selected].nil?
       session[:patron_selected] = params[:patron]
     end
     respond_to do |format|
@@ -24,12 +24,15 @@ class TransactionsController < ApplicationController
   def checkout_book
     unless params[:books].nil? && session[:patron_selected].nil?
       params[:books].keys.each do |book_id|
-        Transaction.create(
+        @user = Transaction.new(
           :patron_id => session[:patron_selected],
           :book_id => book_id,
           :checkout_date => Time.now,
           :checkin_date => nil
         )
+        if(@user.save)
+          book = Book.find(book_id).update_attributes(:checked_out => true)
+        end
       end
       session[:patron_selected] = nil
       redirect_to checkin_path, :notice => "Books are now checked out"
