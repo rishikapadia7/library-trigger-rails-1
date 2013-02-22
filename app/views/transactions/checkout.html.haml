@@ -2,6 +2,5 @@
   = form_tag checkout_path, :method => :get, :remote => true do
     = label_tag :search_patron
     = text_field_tag :search_patron, params[:search_patron], :placeholder => 'First name or last name.'
-    = submit_tag 'Search', :name => nil
 
 .patron_search_results

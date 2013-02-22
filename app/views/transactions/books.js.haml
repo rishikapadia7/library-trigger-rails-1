@@ -1,4 +1,3 @@
-alert("working");
 var books_search_div = $('.book_search_results');
 books_search_div.html("#{escape_javascript(render :partial => 'book_results')}");
 books_search_div.on("change", "input:checkbox", function(event) { var books = books_search_div.find("input:checkbox"); if(books.filter(':checked').length > 0) { books_search_div.find('input:submit').attr("disabled",false); } else { books_search_div.find('input:submit').attr("disabled",true); }});

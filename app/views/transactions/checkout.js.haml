@@ -1,3 +1,4 @@
 var patron_search_div = $('.patron_search_results');
 patron_search_div.html("#{escape_javascript(render :partial => 'patrons_search_result')}");
 patron_search_div.on("change", "input:radio", function(event) { patron_search_div.find('input:submit').attr("disabled",false)});
+

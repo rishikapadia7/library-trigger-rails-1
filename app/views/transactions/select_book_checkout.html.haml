@@ -2,6 +2,5 @@
   = form_tag select_book_checkout_path, :method => :get, :remote => true do
     = label_tag :search_books
     = text_field_tag :search_books, params[:search_books], :placeholder => 'Book title or Author'
-    = submit_tag 'Search', :name => nil
 
 .book_search_results
