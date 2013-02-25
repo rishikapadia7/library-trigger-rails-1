@@ -1,9 +1,8 @@
 - unless @books_searched.empty?
-  = form_tag checkout_book_path do
+  = form_tag do
     - @books_searched.each do |book|
       %p
         = check_box_tag "books[#{book.id}]"
         = full_title_of book
-    = submit_tag 'Checkout Books',:disabled => true
 - else
   %p Your search generated 0 results

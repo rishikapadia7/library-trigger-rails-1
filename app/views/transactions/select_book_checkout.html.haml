@@ -3,4 +3,7 @@
     = label_tag :search_books
     = text_field_tag :search_books, params[:search_books], :placeholder => 'Book title or Author'
 
+.selected_books
+  = form_tag checkout_book_path do
+    = submit_tag 'Checkout Books',:disabled => true
 .book_search_results
