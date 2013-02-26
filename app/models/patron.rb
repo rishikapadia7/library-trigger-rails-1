@@ -8,8 +8,8 @@ class Patron < ActiveRecord::Base
 
   def self.search(search)
     if(search)
-      bind = "%#{search}%"
-      where("first_name LIKE ? OR last_name LIKE ?",bind,bind)
+      bind = "%#{search.downcase}%"
+      where("lower(first_name) LIKE ? OR lower(last_name) LIKE ?",bind,bind)
     else
       nil
     end

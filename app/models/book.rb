@@ -8,8 +8,8 @@ class Book < ActiveRecord::Base
 
   def self.search(search)
     if(search)
-      bind = "%#{search}%"
-      where("(title LIKE ? OR author LIKE ?) AND checked_out = ?",bind,bind,false)
+      bind = "%#{search.downcase}%"
+      where("(lower(title) LIKE ? OR lower(author) LIKE ?) AND checked_out = ?",bind,bind,false)
     else
       nil
     end
