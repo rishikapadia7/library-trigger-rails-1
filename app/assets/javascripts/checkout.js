@@ -1,3 +1,22 @@
+function alerter()
+{
+  alert("I am working!");
+}
+
+function removeDuplicate() {
+  var books_search_div = $('.book_search_results');
+  var books_selected = $(".selected_books");
+  books_search_div.find("p").each(function(i,element) {
+      books_selected.find("p").each(function(index, node) {
+          if($(node).find("input:checkbox").prop("id") == $(element).find("input:checkbox").prop("id")) {
+            $(element).remove();
+          }
+        }
+      );
+    }
+  );
+}
+
 $(document).ready(
   function() {
     var search_patron_box = $("#search_patron");
@@ -66,18 +85,5 @@ $(document).ready(
     }
 
     setInterval(checkCheckboxes, 33);
-    setInterval(removeDuplicate, 33);
-
-    function removeDuplicate() {
-      books_search_div.find("p").each(function(i,element) {
-          books_selected.find("p").each(function(index, node) {
-              if($(node).find("input:checkbox").prop("id") == $(element).find("input:checkbox").prop("id")) {
-                $(element).remove();
-              }
-            }
-          );
-        }
-      );
-    }
   }
 );
