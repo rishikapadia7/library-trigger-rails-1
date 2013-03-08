@@ -10,7 +10,7 @@
       = book.checked_out
       = link_to 'Show', book
       = link_to 'Edit', edit_book_path(book)
-      = link_to('Destroy', book, method: :delete, data: { confirm: 'Are you sure?' })
+      = link_to 'Destroy', book, :method => :delete, data: { confirm: 'Are you sure?' }, :remote => true
 
   = will_paginate @books if @books
 

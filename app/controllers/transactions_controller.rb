@@ -35,7 +35,7 @@ class TransactionsController < ApplicationController
         end
       end
       session[:patron_selected] = nil
-      redirect_to checkin_path, :notice => "Books are now checked out"
+      redirect_to root_path, :notice => "Books are now checked out"
     else
       redirect_to checkout_path, :notice => "You must select a book and a patron."
     end

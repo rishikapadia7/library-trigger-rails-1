@@ -7,6 +7,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
+      format.js { head :no_content }
       format.json { render json => @books }
     end
   end
@@ -74,10 +75,12 @@ class BooksController < ApplicationController
   # DELETE /books/1.json
   def destroy
     @book = Book.find(params[:id])
+    Transaction.where(:book_id => @book.id).destroy_all
     @book.destroy
 
     respond_to do |format|
       format.html { redirect_to books_url }
+      format.js { head :no_content }
       format.json { head :no_content }
     end
   end
