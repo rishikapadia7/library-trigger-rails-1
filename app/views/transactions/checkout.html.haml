@@ -1,6 +1,48 @@
-.patron_search_box
-  = form_tag checkout_path, :method => :get, :remote => true do
-    = label_tag :search_patron
-    = text_field_tag :search_patron, params[:search_patron], :placeholder => 'First name or last name.'
+%h1 Book Checkout
 
-.patron_search_results
+= form_for @transaction do |f|
+  - if @transaction.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@transaction.errors.count, "error")} prohibited this transaction from being saved:"
+      %ul
+        - @transaction.errors.full_messages.each do |msg|
+          %li= msg
+
+  %h4 Select Patron
+  - if Patron.any? == false
+    No Patrons on record.  Please 
+    = link_to 'Add Patron', new_patron_path
+
+  .field#patron
+    - Patron.all.each do |patron|
+      = radio_button_tag "patron['#{patron.id}']", patron.id
+      = f.label "#{patron.first_name} #{patron.last_name}"
+      %br
+
+  %h4 Select Book
+  - if Book.any? == false
+    No Books on record.  Please 
+    = link_to 'Add Book', new_book_path
+
+  .field#book
+    - Book.all.each do |book|
+      - if book.checked_out == false
+        = check_box_tag "books['#{book.id}']", book.id
+        = f.label "#{book.title} by #{book.author}"
+      %br
+
+  .field
+    = f.label :checkout_date
+    = f.datetime_select :checkout_date, :prefix => 'checkout_datetime'
+
+  .actions
+    = f.submit 'Checkout'
+
+%h4 Currently Checked Out
+- Book.all.each do |book|
+  - if book.checked_out == true
+    = "#{book.title} by #{book.author}"
+    %br
+
+%br
+= link_to 'Back', home_path

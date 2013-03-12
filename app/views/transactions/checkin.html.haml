@@ -1,18 +1,28 @@
-%p= t('books_checked_out')
+%h1 Book Checkin
 
-.transactions
-  %p Patron | Book | Checked out date
-  %p= t('all_available') if @unfinished_transactions.empty?
-  - @unfinished_transactions.each do |transaction|
-    %p
-      - book = Book.find(transaction.book_id)
-      - patron = Patron.find(transaction.patron_id)
-      = patron.first_name
-      = patron.last_name
-      \ |
-      = book.title
-      \ |
-      = transaction.checkout
-      \ |
-      = link_to t('links.checkin.checkin_book') , {:controller => :transactions, :action => :checkin_book,  :transaction_id => transaction.id}
-  = will_paginate @unfinished_transactions if @unfinished_transactions
+- if Patron.any? == false
+  No Patrons on record.  Please 
+  = link_to 'Add Patron', new_patron_path
+- if Book.any? == false
+  No Books on record.  Please 
+  = link_to 'Add Book', new_book_path
+- book = Book.where(:checked_out => true)
+- if book.any? == false
+  No books to checkin.
+
+%br
+%table.checkins
+  %tr
+    %th 
+    %th Patron
+    %th Book
+  
+  - Transaction.all.each do |transaction|
+    - patron = Patron.find(transaction.patron_id)
+    - book = Book.find(transaction.book_id)
+    - if transaction.checkin_date.blank? || transaction.checkin_date.nil?
+      %tr
+        %td= link_to 'checkin', {:controller => :transactions, :action => :checkin_action, :transaction_id => transaction.id}, :remote => true
+        %td= patron.first_name + " " + patron.last_name
+        %td= "#{book.title} by #{book.author}"
+= link_to "Back", homes_path

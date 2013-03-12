@@ -1,74 +1,96 @@
 class TransactionsController < ApplicationController
-  before_filter :build_objects,:check_logged_in
+  #before_filter :redirect_if_not_logged_in
+  # GET /transactions
+  # GET /transactions.json
+  def index
+    @transactions = Transaction.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @transactions }
+    end
+  end
+
+  
+  # POST /transactions
+  # POST /transactions.json
+  def create
+    selected_date = DateTime.new(
+      params[:checkout_datetime].values[0].to_i,
+      params[:checkout_datetime].values[1].to_i,
+      params[:checkout_datetime].values[2].to_i,
+      params[:checkout_datetime].values[3].to_i,
+      params[:checkout_datetime].values[4].to_i
+    )
+    #raise selected_date.inspect
+    params[:books].values.each do |book_id|
+      @transaction = Transaction.new(
+        :patron_id => params[:patron].values.first,
+        :book_id => book_id,
+        :checkout_date => selected_date
+        )
+      if @transaction.save
+        @book = Book.find(book_id.to_i)
+        @book.update_attributes(:checked_out => true)
+      end
+
+    end
+    
+    if @transaction.save
+      @book = Book.find(@transaction.book_id)
+      @book.update_attributes(:checked_out => true)
+      
+      redirect_to checkout_path, :notice => 'Checkout completed successfully.'
+    else
+      render 'checkout'
+    end
+  end
+
+  def update
+    @transaction = Transaction.find(params[:id])
+
+    if @patron.update_attributes(params[:patron])
+      redirect_to home_path
+    else
+      render 'edit'
+    end
+  end
+
+  # DELETE /transactions/1
+  # DELETE /transactions/1.json
+  def destroy
+    @transaction = Transaction.find(params[:id])
+    
+    if @transaction.checkin_date.blank? || @transaction.checkin_date.nil?
+      @book = Book.find(@transaction.book_id)
+      @book.update_attributes(:checked_out => false)
+    end
+
+    @transaction.destroy
+
+    respond_to do |format|
+      format.html { redirect_to transactions_url }
+      format.js { head :no_content }
+      format.json { head :no_content }
+    end
+  end
+
+  def checkin
+    @transactions = Transaction.all
+  end
 
   def checkout
     @transaction = Transaction.new
-    @patrons_searched = Patron.search(params[:search_patron])
-    respond_to do |format|
-      format.html
-      format.js {render 'checkout.js.haml' }
-    end
+    @transactions = Transaction.all
   end
 
-  def select_book_checkout
-    @books_searched = Book.search(params[:search_books])
-    if !params[:patron].nil? && session[:patron_selected].nil?
-      session[:patron_selected] = params[:patron]
-    end
-    respond_to do |format|
-      format.html
-      format.js {render 'books.js.haml'}
-    end
-  end
-
-  def checkout_book
-    unless params[:books].nil? && session[:patron_selected].nil?
-      params[:books].keys.each do |book_id|
-        @user = Transaction.new(
-          :patron_id => session[:patron_selected],
-          :book_id => book_id,
-          :checkout_date => Time.now,
-          :checkin_date => nil
-        )
-        if(@user.save)
-          book = Book.find(book_id).update_attributes(:checked_out => true)
-        end
-      end
-      session[:patron_selected] = nil
-      redirect_to root_path, :notice => "Books are now checked out"
-    else
-      redirect_to checkout_path, :notice => "You must select a book and a patron."
-    end
-  end
-
-
-  def checkin
-    @unfinished_transactions = paginate_the Transaction.where(:checkin_date => nil)
-  end
-
-  def checkin_book
+  def checkin_action
     @transaction = Transaction.find(params[:transaction_id])
     @transaction.update_attributes(:checkin_date => Time.now)
+
     @book = Book.find(@transaction.book_id)
-
     @book.update_attributes(:checked_out => false)
-    flash[:notice] = @book.title + ' is successfully checked in.'
-    redirect_to checkin_path
-  end
-  def history
-    @transactions = Transaction.where('checkin_date is NOT NULL')
-  end
 
-  def delete
-    Transaction.find(params[:transaction_id]).destroy
-    flash[:notice] = 'Deleted transaction'
-    redirect_to history_path
+    redirect_to checkin_path, :notice => "Succesfully Checked in!"
   end
-
-  protected
-    def build_objects
-      @patrons = Patron.all
-      @available_books = Book.where(:checked_out => false)
-      @unavailable_books = Book.where(:checked_out => true)
-    end
 end

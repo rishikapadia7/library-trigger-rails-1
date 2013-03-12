@@ -1,9 +1,0 @@
-- unless @patrons_searched.empty?
-  = form_tag select_book_checkout_path do
-    - @patrons_searched.each do |patron|
-      %p
-        = radio_button_tag 'patron', patron.id
-        = full_name_of patron
-    = submit_tag 'Select', :disabled => true
-- else
-  %p Your search generated 0 results

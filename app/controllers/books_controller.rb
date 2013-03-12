@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_filter :check_logged_in
+  #before_filter :check_logged_in
   # GET /books
   # GET /books.json
   def index
@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.js { head :no_content }
-      format.json { render json => @books }
+      format.json { render :json => @books }
     end
   end
 
@@ -19,7 +19,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json => @book }
+      format.json { render :json => @book }
     end
   end
 
@@ -30,7 +30,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json => @book }
+      format.json { render :json => @book }
     end
   end
 
@@ -50,7 +50,7 @@ class BooksController < ApplicationController
         format.json { render json => @book, status => :created, location => @book }
       else
         format.html { render action => "new" }
-        format.json { render json => @book.errors, status => :unprocessable_entity }
+        format.json { render :json => @book.errors, status => :unprocessable_entity }
       end
     end
   end
@@ -66,7 +66,7 @@ class BooksController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action => "edit" }
-        format.json { render json => @book.errors, status => :unprocessable_entity }
+        format.json { render :json => @book.errors, status => :unprocessable_entity }
       end
     end
   end

@@ -1,0 +1,26 @@
+%h1 Manage Transactions
+
+%table
+  %tr
+    %th Patron
+    %th Book
+    %th Checkout Date
+    %th Checkin Date
+    %th
+
+  - if Transaction.any? == false
+    There are no transactions.
+  - @transactions.each do |transaction|
+    %tr
+      - patron = Patron.find(transaction.patron_id)
+      %td= patron.first_name + " " + patron.last_name
+      - book = Book.find(transaction.book_id)
+
+      %td= book.title + " by " + book.author
+      %td= transaction.checkout_date
+      %td= transaction.checkin_date
+      %td= link_to 'Destroy', transaction, :method => :delete, data: { confirm: 'Are you sure?' }, :remote => true
+
+%br
+
+= link_to 'Back', home_path
