@@ -8,7 +8,7 @@
 
 User.create(:email => 'aldrin.almacin@mosaic.com', :password => 'm')
 
-1000.times do | n |
+100.times do | n |
   book = Book.create(:title => Faker::Lorem.words.join(' '), :author => Faker::Name.name)
   patron = Patron.create(:first_name => Faker::Name.first_name, :last_name => Faker::Name.last_name)
 

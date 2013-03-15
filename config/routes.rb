@@ -5,6 +5,9 @@ Library::Application.routes.draw do
   resources :transactions
 
   get 'home' => 'welcome#home'
+  match 'books/delete/:id' => 'books#destroy'
+  match 'patrons/delete/:id' => 'patrons#destroy'
+  match 'libs/delete/:id' => 'libs#destroy'
   match "homes" => 'welcome#home'
   get 'checkin_action' => 'transactions#checkin_action'
   match 'checkin' => 'transactions#checkin'
