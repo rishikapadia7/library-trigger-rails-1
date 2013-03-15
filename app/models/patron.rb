@@ -4,7 +4,7 @@ class Patron < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 
-  belongs_to :transaction
+  has_one :transaction
 
   def self.search(search)
     if(search)

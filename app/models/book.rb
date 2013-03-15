@@ -4,7 +4,7 @@ class Book < ActiveRecord::Base
   validates :author, :presence => true
   validates :title, :presence => true
 
-  belongs_to :transaction
+  has_one :transaction
 
   def self.search(search)
     if(search)

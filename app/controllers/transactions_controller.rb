@@ -4,10 +4,9 @@ class TransactionsController < ApplicationController
   # GET /transactions.json
   def index
     @transactions = Transaction.all#.order('checkout_date')
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @transactions}
+      format.json { render :json => @transactions.as_json }
     end
   end
 
@@ -91,6 +90,9 @@ class TransactionsController < ApplicationController
     @book = Book.find(@transaction.book_id)
     @book.update_attributes(:checked_out => false)
 
-    redirect_to checkin_path, :notice => "Succesfully Checked in!"
+    respond_to do |format|
+      format.js { head :no_content }
+      format.json { head :no_content }
+    end
   end
 end
