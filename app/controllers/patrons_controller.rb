@@ -3,11 +3,12 @@ class PatronsController < ApplicationController
   # GET /patrons
   # GET /patrons.json
   def index
-    @patrons = paginate_the Patron
+    @patrons = paginate_the Patron.order('last_name, first_name')
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json => @patrons }
+      format.js { head :no_content }
+      format.json { render :json => @patrons }
     end
   end
 
@@ -18,7 +19,7 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json => @patron }
+      format.json { render :json => @patron }
     end
   end
 
@@ -29,7 +30,7 @@ class PatronsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json => @patron }
+      format.json { render :json => @patron }
     end
   end
 
@@ -46,10 +47,10 @@ class PatronsController < ApplicationController
     respond_to do |format|
       if @patron.save
         format.html { redirect_to @patron, notice => 'Patron was successfully created.' }
-        format.json { render json => @patron, status => :created, location => @patron }
+        format.json { render :json => @patron, status => :created, location => @patron }
       else
         format.html { render action => "new" }
-        format.json { render json => @patron.errors, status => :unprocessable_entity }
+        format.json { render :json => @patron.errors, status => :unprocessable_entity }
       end
     end
   end
@@ -65,7 +66,7 @@ class PatronsController < ApplicationController
         format.json { head :no_content }
       else
         format.html { render action => "edit" }
-        format.json { render json => @patron.errors, status => :unprocessable_entity }
+        format.json { render :json => @patron.errors, status => :unprocessable_entity }
       end
     end
   end
@@ -74,10 +75,12 @@ class PatronsController < ApplicationController
   # DELETE /patrons/1.json
   def destroy
     @patron = Patron.find(params[:id])
+    Transaction.where(:patron_id => @patron.id).destroy_all
     @patron.destroy
 
     respond_to do |format|
       format.html { redirect_to patrons_url }
+      format.js { head :no_content }
       format.json { head :no_content }
     end
   end

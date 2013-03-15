@@ -1,21 +1,21 @@
 !!!
 %html
   %head
-    %title Library
+    %title Transactionrary
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    - if logged_in
-      %nav
-        %ul
-          %li= link_to t('links.home.link_name'),home_path
-          %li= link_to t('links.books.link_name'),books_path
-          %li= link_to t('links.patrons.link_name'),patrons_path
-          %li= link_to t('links.checkout.link_name'),checkout_path
-          %li= link_to t('links.checkin.link_name'),checkin_path
-          %li= link_to t('links.history.link_name'),history_path
-          //%li= link_to 'Log out', logout_path
+    //- if logged_in
+    %nav
+      %ul
+        %li= link_to t('links.home.link_name'),home_path
+        %li= link_to t('links.books.link_name'),books_path
+        %li= link_to t('links.patrons.link_name'),patrons_path
+        %li= link_to t('links.checkout.link_name'),checkout_path
+        %li= link_to t('links.checkin.link_name'),checkin_path
+        %li= link_to t('links.history.link_name'),history_path
+        //%li= link_to 'Log out', logout_path
     - if flash[:notice]
       %p= flash[:notice]
     = yield

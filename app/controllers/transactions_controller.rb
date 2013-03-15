@@ -3,11 +3,11 @@ class TransactionsController < ApplicationController
   # GET /transactions
   # GET /transactions.json
   def index
-    @transactions = Transaction.all
+    @transactions = Transaction.all#.order('checkout_date')
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @transactions }
+      format.json { render :json => @transactions}
     end
   end
 
