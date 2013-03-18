@@ -76,11 +76,41 @@ class TransactionsController < ApplicationController
 
   def checkin
     @transactions = Transaction.all
+
+    @open_transactions = []
+
+    @transactions.each do |transaction|
+      if transaction.book.checked_out == true
+        @open_transactions.append(transaction)
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @open_transactions.as_json }
+    end
+
   end
 
   def checkout
     @transaction = Transaction.new
     @transactions = Transaction.all
+
+    @ready_transactions = []
+
+
+    @transactions.each do |transaction|
+      if transaction.book.checked_out == false
+        @ready_transactions.append(transaction)
+      end
+    end
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @ready_transactions.as_json }
+    end
+
+
   end
 
   def checkin_action
