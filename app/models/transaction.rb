@@ -8,7 +8,9 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :book_id, :patron_id, :checkout_date
 
   def as_json(options = nil )
-    { :id => id, 
+    { :id => id,
+      :patron_id => patron_id,
+      :book_id => book_id,
       :first_name => Patron.find(patron_id).first_name,
       :last_name => Patron.find(patron_id).last_name,
       :title => Book.find(book_id).title,
