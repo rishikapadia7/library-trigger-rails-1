@@ -11,6 +11,9 @@ class TransactionsController < ApplicationController
       end
     end
 
+    @transactions.sort_by! &:updated_at
+    @transactions.reverse!
+
     #.order('checkout_date')
     respond_to do |format|
       format.html # index.html.erb
@@ -84,9 +87,7 @@ class TransactionsController < ApplicationController
 
   def checkin
     @transactions = Transaction.all
-
     @open_transactions = []
-
     @transactions.each do |transaction|
       if transaction.book != nil && transaction.patron
         if transaction.book.checked_out == true
@@ -95,6 +96,8 @@ class TransactionsController < ApplicationController
       end
     end
 
+    @open_transactions.sort_by! &:checkout_date
+    
     respond_to do |format|
       format.html
       format.json { render :json => @open_transactions.as_json }
@@ -116,6 +119,9 @@ class TransactionsController < ApplicationController
         end
       end
     end
+
+    @ready_transactions.sort_by! &:updated_at
+    @ready_transactions.reverse!
 
     respond_to do |format|
       format.html

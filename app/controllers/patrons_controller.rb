@@ -3,7 +3,7 @@ class PatronsController < ApplicationController
   # GET /patrons
   # GET /patrons.json
   def index
-    @patrons = paginate_the Patron.order('last_name, first_name')
+    @patrons = paginate_the Patron.order('first_name, last_name')
 
     respond_to do |format|
       format.html # index.html.erb
