@@ -25,14 +25,20 @@ class TransactionsController < ApplicationController
   # POST /transactions
   # POST /transactions.json
   def create
-    selected_date = DateTime.new(
-      params[:checkout_datetime].values[0].to_i,
-      params[:checkout_datetime].values[1].to_i,
-      params[:checkout_datetime].values[2].to_i,
-      params[:checkout_datetime].values[3].to_i,
-      params[:checkout_datetime].values[4].to_i
-    )
-    #raise selected_date.inspect
+    if params[:checkout_datetime]
+      selected_date = DateTime.new(
+        params[:checkout_datetime].values[0].to_i,
+        params[:checkout_datetime].values[1].to_i,
+        params[:checkout_datetime].values[2].to_i,
+        params[:checkout_datetime].values[3].to_i,
+        params[:checkout_datetime].values[4].to_i
+      )
+    end
+
+    unless selected_date
+      selected_date = DateTime.parse(params[:checkout_date])
+    end
+
     params[:books].values.each do |book_id|
       @transaction = Transaction.new(
         :patron_id => params[:patron].values.first,
