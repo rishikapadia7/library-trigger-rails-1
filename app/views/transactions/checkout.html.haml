@@ -32,8 +32,8 @@
       %br
 
   .field
-    = f.label :checkout_date
-    = f.datetime_select :checkout_date, :prefix => 'checkout_datetime'
+    %label{:for => "transaction_checkout_date"}
+    %input{:type => "datetime", :name=>"checkout_date", :id=>"checkout_date"}
 
   .actions
     = f.submit 'Checkout'

@@ -3,7 +3,7 @@
   %head
     %title Library
     = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
+    = javascript_include_tag "all", "app_config", "disable-frames", "application" 
     = csrf_meta_tags
   %body
     //- if logged_in
