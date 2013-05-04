@@ -16,6 +16,5 @@
 
 /vendor/bundle
 .vagrant
-/config/*.yml
 *.swp
 *.swo
