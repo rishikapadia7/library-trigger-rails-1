@@ -3,34 +3,14 @@ development:
   encoding: unicode
   database: d_library
   pool: 5
-  host: 127.0.0.1
   username: vagrant
   password:
 
-staging:
-  adapter: postgresql
-  encoding: unicode
-  database: s_library
-  pool: 5
-  host: 127.0.0.1
-  username: vagrant
-  password:
-
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: p_library
-  pool: 5
-  host: 127.0.0.1
-  username: vagrant
-  password:
-
-test: &test
+test:
   adapter: postgresql
   encoding: unicode
   database: t_library
   pool: 5
-  host: 127.0.0.1
   username: vagrant
   password:
 
