@@ -1,18 +1,1 @@
-development:
-  adapter: postgresql
-  encoding: unicode
-  database: d_library
-  pool: 5
-  username: vagrant
-  password:
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: t_library
-  pool: 5
-  username: vagrant
-  password:
-
-cucumber:
-  <<: *test
+/var/www/apps/library/config/vagrant/database.yml
